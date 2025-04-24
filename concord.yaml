@@ -12,6 +12,7 @@ configuration:
     - mvn://com.walmartlabs.concord.plugins.basic:smtp-tasks:latest
     - mvn://com.walmartlabs.concord.plugins:ldap-task:latest
     - mvn://com.walmartlabs.concord.plugins:jira-task:2.5.0
+    - mvn://com.walmartlabs.concord.plugins:http-task:1.6.0
 
   arguments:
     runtimeVars: {}
@@ -19,7 +20,7 @@ configuration:
 
 flows:
   default:
-    - log: "Creating empty.yaml in GitHub repo"
+    - log: "Creating empty.yaml in GitHub repo..."
     - task: http
       in:
         method: PUT
@@ -27,7 +28,8 @@ flows:
         headers:
           Authorization: "token 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"
           Accept: "application/vnd.github+json"
-        body:
-          message: "Create empty.yaml"
-          content: "Cg=="  # Base64 encoding for a single newline (\n)
-          branch: "main"
+        request:
+          json:
+            message: "Create empty.yaml"
+            content: "Cg=="  # Base64 encoded "\n"
+            branch: "main"
