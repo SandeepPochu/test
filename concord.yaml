@@ -27,8 +27,7 @@ flows:
         headers:
           Authorization: "token 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"
           Accept: "application/vnd.github+json"
-        request:
-          json:
-            message: "Create empty.yaml"
-            content: "Cg=="  # Base64 encoding for a single newline (\n)
-            branch: "main"
+        body:
+          message: "Create empty.yaml"
+          content: "Cg=="  # Base64 encoding for a single newline (\n)
+          branch: "main"
