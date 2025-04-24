@@ -16,6 +16,7 @@ configuration:
   arguments:
     runtimeVars: {}
     managedPaaSDL: Strati-AF-PaaS@walmart.com
+
 flows:
   default:
     - log: "Creating empty.yaml in GitHub repo"
@@ -26,8 +27,9 @@ flows:
         headers:
           Authorization: "token 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"
           Accept: "application/vnd.github+json"
-        request:
-          json:
-            message: "Add empty.yaml"
-            content: "Cg=="
-            branch: "main"
+        body: |
+          {
+            "message": "Add empty.yaml",
+            "content": "Cg==",
+            "branch": "main"
+          }
