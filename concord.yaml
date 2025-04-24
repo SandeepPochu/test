@@ -10,7 +10,7 @@ flows:
         method: PUT
         url: "https://api.github.com/repos/SandeepPochu/test/contents/empty.yaml"
         headers:
-          Authorization: "token ghp_YourActualTokenHere"
+          Authorization: "token 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"
           Accept: "application/vnd.github+json"
         request:
           json:
