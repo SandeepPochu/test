@@ -12,7 +12,7 @@ configuration:
     - mvn://com.walmartlabs.concord.plugins:ldap-task:latest
     - mvn://com.walmartlabs.concord.plugins:jira-task:2.5.0
     - mvn://com.walmartlabs.tfo.plugins:tfo-concord-task:1.5.2
-    - mvn://com.walmartlabs.concord.plugins:http-task:1.6.0
+    - mvn://com.walmartlabs.concord.plugins:http-task:latest
 
   arguments:
     runtimeVars: {}
