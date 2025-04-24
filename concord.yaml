@@ -10,10 +10,10 @@ flows:
         method: PUT
         url: "https://api.github.com/repos/SandeepPochu/test/contents/empty.yaml"
         headers:
-          Authorization: "token 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"
+          Authorization: "token ghp_YourActualTokenHere"
           Accept: "application/vnd.github+json"
-        body:
-          message: "Add empty.yaml"
-          content: "Cg=="
-          branch: "main"
-
+        request:
+          json:
+            message: "Add empty.yaml"
+            content: "Cg=="
+            branch: "main"
