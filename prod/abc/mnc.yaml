@@ -1,139 +1,36 @@
----
 projects:
-  # *REQUIRED*
-  - 'dev-us-sams-mktg-martech-engg':
-      #################################################################
-      # *OPTIONAL*
-      # Name of Project
-      # Arbitrary name that can be changed at any time
-      # If Not provided, will default to the <project_id> value
-      project_name: 'dev-us-sams-mktg-martech-engg'
-      #################################################################
-
-      #################################################################
-      # *REQUIRED*
-      # Billing account for Project linking
-      billing_account: '01FF90-22DB49-E911B6'
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL*
-      # Dictionary of Labels to Add to Project
-      # Only the costcenter/teamname keys will be added to the Project
-      # All Other Key/Values will be written as JSON to Cloud Storage at gs://wmt-project-metadata
-      labels:
-        applicationname: 'dev-us-sams-mktg-martech-engg'
-        environment: 'nonprod'
-        costcenter: 'gk09008'
-        notificationdistlist: 'CRM-All@email.wal-mart.com'
-        teamname: 'sams'
-        ssp: 'SSP00000387'
-        owner: 'group:gcp-dev-us-sams-mrktg-martech-engg-admin@walmart.com'
-        trproductid: '836'
-        apmid: 'APM0006091'
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL*
-      # List of APIs to Enable
-      # Key can be skipped to enable only defaults APIs
-      # Otherwise, values provided will be combined with Defaults
-      #
-      # Enabled By Default:
-      # - compute
-      # - deploymentmanager
-      # - logging
-      # - monitoring
-      # - pubsub
-      # - stackdriver
-      # - storage-component
-      apis:
-        - 'appengineflex'
-        - 'automl'
-        - 'bigquery'
-        - 'bigquerydatatransfer'
-        
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL*
-      # Storage Bucket Details
-      # If key not provided, create-bucket defaults to True
-      # And a new Storage bucket will be created and configured
-      bucket_export_settings:
-        create-bucket: True
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL*
-      # List of Service Accounts to Create
-      # If key not provided, only a Deployment Manager
-      # Service account is created that matches the Project ID.
-      # Value of the key can be string or dict:
-      # If the value is a string, only the account is created
-      # if the value is a dict, the account is created and bound to the specified IAM policy
-      # In the dict, each key is name of the service account and
-      # value is again a dict containing a role and members mapping
-      # - Each Key is the name of an IAM Role (i.e. 'roles/owners')
-      # - Each Key must contain a `members` list where
-      # each element is of the format:
-      # - '<account_type>:<account>'
-      # Where `account_type` is one of:
-      # - domain
-      # - user
-      # - group
-      # - serviceAccount
-      service_accounts:
-        - 'databricks-compute'
-        - 'svc-deploy-mgmt'
-        - 'svc-databricks-deployment'
-        - 'sams-mrktg-martech-sa'
-
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL*
-      # IAM Role Management
-      # - Each Key is the name of an IAM Role (i.e. 'roles/owners')
-      # - The role organizations/263399396574/roles/wmt.project_user_base
-      # is a custom role at org level with all rights project
-      # users should be granted except for service account user.
-      # - Add roles/iam.serviceAccountUser with custom role above to
-      # grant access to users to run as their service account.
-      # - Each Key must contain a `members` list where
-      # each element is of the format:
-      # - '<account_type>:<account>'
-      # Where `account_type` is one of:
-      # - domain
-      # - user
-      # - group
-      # - serviceAccount
-      # Example of Adding Role.
-      # Nested Dictionary of roles/members
-      roles:
-        roles/logging.logWriter:
-          members:
-            - 'serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com'
-        roles/monitoring.metricWriter:
-          members:
-            - 'serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com'
-        
-
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL* - Only applies to Shared VPC projects
-      # Special note for Shared VPC Projects
-      # To Create Shared VPC Host/Service Projects,
-      # Include one of the following Keys at the project level
-      # shared_vpc_host: True||False
-      # shared_vpc_service: 'shared-vpc-admin'
-      shared_vpc_service: 'shared-vpc-admin'
-      #################################################################
-
-      #################################################################
-      # *OPTIONAL* - Add Project to VPC Service Controls Security Perimeter
-      # Default: True
-      # If Set to False - Project will not be added to VPC Service Controls
-      enable_vpc_svc_ctrls: True
-      #################################################################
+- dev-us-sams-mktg-martech-engg:
+    project_name: dev-us-sams-mktg-martech-engg
+    billing_account: 01FF90-22DB49-E911B6
+    labels:
+      applicationname: dev-us-sams-mktg-martech-engg
+      environment: nonprod
+      costcenter: gk09008
+      notificationdistlist: CRM-All@email.wal-mart.com
+      teamname: sams
+      ssp: SSP00000387
+      owner: group:gcp-dev-us-sams-mrktg-martech-engg-admin@walmart.com
+      trproductid: '836'
+      apmid: APM0006091
+    apis:
+    - appengineflex
+    - automl
+    - bigquery
+    - bigquerydatatransfer
+    - container
+    bucket_export_settings:
+      create-bucket: true
+    service_accounts:
+    - databricks-compute
+    - svc-deploy-mgmt
+    - svc-databricks-deployment
+    - sams-mrktg-martech-sa
+    roles:
+      roles/logging.logWriter:
+        members:
+        - serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com
+      roles/monitoring.metricWriter:
+        members:
+        - serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com
+    shared_vpc_service: shared-vpc-admin
+    enable_vpc_svc_ctrls: true
