@@ -17,6 +17,7 @@ projects:
     - automl
     - bigquery
     - bigquerydatatransfer
+    - container
     bucket_export_settings:
       create-bucket: true
     service_accounts:
@@ -26,6 +27,9 @@ projects:
     - sams-mrktg-martech-sa
     roles:
       roles/monitoring.metricWriter:
+        members:
+        - serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com
+      roles/logging.logWriter:
         members:
         - serviceAccount:databricks-compute@dev-us-sams-mktg-martech-engg.iam.gserviceaccount.com
     shared_vpc_service: shared-vpc-admin
