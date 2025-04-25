@@ -1,0 +1,109 @@
+gcp:
+  project_id: def
+  region: west
+  service:
+    gcp-databricks:
+      secret:
+        akeyless:
+          path: /Non-Prod/tfo/Strati-AF-PaaS/GCP-Databricks-NonProd/def-GOOGLE_CREDENTIALS
+      stages:
+        deploy:
+          cluster_policy:
+            config:
+              compute_types:
+              - Small
+              - Medium
+              - Large
+              node_type: e2
+            permissions:
+              cluster:
+              - group:
+                - gcp-sams-sng-admin
+                - gcp-sams-sng-qa-editor
+                role: can_use
+                shared_compute_access: 'true'
+              pool:
+              - group:
+                - gcp-sams-sng-admin
+                - gcp-sams-sng-qa-editor
+                role: can_manage
+          config:
+            databricks_google_service_account: abc
+            deployId: '1234'
+            workspace_name: def
+          metastore:
+            id: 5aaba3d0-5acd-4c6a-99aa-5f58643a3254
+            permissions:
+            - group:
+              - gcp-sams-sng-admin
+              role: data_sharing_basic
+          network_project_id: shared-vpc-admin
+          permissions:
+            role/user:
+              group:
+              - gcp-sams-sng-admin
+              - gcp-sams-sng-qa-editor
+              - gcp-sams-sng
+              - gcp-sams-sng-qa
+          pod_ip_range_name: us-east4-07-fda22cb678eb41bd95172e716197782c
+          service_ip_range_name: us-east4-08-fda22cb678eb41bd95172e716197782c
+          sqlwarehouse:
+            cluster:
+            - config:
+                max_instance: 2
+                serverless: 'true'
+                type: small
+              name: small-def-sql
+              permission:
+              - group:
+                - gcp-sams-sng-admin
+                - gcp-sams-sng-qa-editor
+                role: can_use
+            - config:
+                max_instance: 2
+                serverless: 'true'
+                type: medium
+              name: medium-def-sql
+              permission:
+              - group:
+                - gcp-sams-sng-admin
+                - gcp-sams-sng-qa-editor
+                role: can_use
+            - config:
+                max_instance: 2
+                serverless: 'true'
+                type: large
+              name: large-def-sql
+              permission:
+              - group:
+                - gcp-sams-sng-admin
+                - gcp-sams-sng-qa-editor
+                role: can_use
+          subnet_id: us-east4-06-fda22cb678eb41bd95172e716197782c
+          unity_catalog:
+            create:
+            - catalog_permissions:
+              - group:
+                - gcp-sams-sng-admin
+                role: data_editor
+              - group:
+                - gcp-sams-sng-qa
+                role: data_reader
+              - group:
+                - gcp-sams-sng-qa-editor
+                role: data_writer
+              external_bucket: def
+              external_location_permissions:
+              - group:
+                - gcp-sams-sng-qa-editor
+                role: writer
+              name: def
+              shared: 'false'
+              storage_credentials_permissions:
+              - group:
+                - gcp-sams-sng-qa-editor
+                role: writer
+          vpc_id: vpcnet-private-databricks-use4-01
+notify:
+  slack:
+    channelName: gene-test
